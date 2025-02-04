@@ -97,12 +97,12 @@ class PolygonToUser(models.Model):
 @receiver(post_save, sender=Polygon)
 @receiver(post_delete, sender=Polygon)
 @receiver(post_migrate, sender=Polygon)
-def clear_cache(_, __, **___):
+def clear_cache(sender, instance, **kwargs):
     cache.delete(settings.CACHE_POLYGONS_GET_KEY)
 
 
 @receiver(post_save, sender=PolygonIntersection)
 @receiver(post_delete, sender=PolygonIntersection)
 @receiver(post_migrate, sender=PolygonIntersection)
-def clear_cache2(_, __, **___):
+def clear_cache2(sender, instance, **kwargs):
     cache.delete(settings.CACHE_INTERSECTIONS_GET_KEY)
